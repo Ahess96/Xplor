@@ -13,8 +13,10 @@ app.use(express.json());
 // Configure static middleware
 // to serve from the production 'dist' folder
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
+app.use('/api/users', require('./routes/api/users'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
