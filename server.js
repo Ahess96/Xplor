@@ -1,7 +1,7 @@
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
 require('dotenv').config();
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
 // Connect to the database
 require('./config/database');
 
@@ -19,16 +19,18 @@ app.use(require('./config/checkToken'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/recreation', require('./routes/api/recreation'))
 // Recreation.gov API Route
-app.get('/api/recreation/search', async (req, res) => {
+app.get('/api/recreation/activities', async (req, res) => {
   console.log(`fetching data with query:`, req.query.search)
   const search = req.query.search
+  const apikey = process.env.API_KEY;
   // Make fetch request to API
-  const ROOT_URL = `https://ridb.recreation.gov/api/v1/${search}`
+  const ROOT_URL = `https://ridb.recreation.gov/api/v1/activities`
+  console.log({ROOT_URL})
   const options = {
     method: 'GET',
     headers: {
       'accept': 'application/json',  
-      'Authorization': `apikey ${apikey}`
+      apikey
     }
   };
   try {

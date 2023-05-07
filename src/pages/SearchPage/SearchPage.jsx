@@ -1,25 +1,23 @@
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import * as recreationAPI from '../../utilities/recreation-api'
 
 export default function SearchPage() {
   
-  const [searchResults, setSearchResults] = useState([]);
+  const [results, setResults] = useState({})
 
-  // async function getSearchResults() {
-  //   const response = await recreationAPI.search();
-  //   console.log(response)
-  //   const data = await response.json();
-  //   setSearchResults(data.searchResults);
-  // }
+  useEffect(function() {
+    async function getActivities() {
+      const activities = await recreationAPI.getActivities();
+      setResults(activities);
+    }
+    getActivities();
+  }, [])
   
   return (
     <>
-      {/* <button onClick={getSearchResults}>Search</button> */}
-      <ul>
-        {searchResults.map(result => (
-          <li key={result.id}>{result.ActivityName}</li>
-        ))}
-      </ul>
+      {results.RECDATA.map((r) =>
+        r.ActivityName
+      )}
     </>
   )
 }
