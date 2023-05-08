@@ -17,7 +17,7 @@ app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/recreation', require('./routes/api/recreation'))
+// app.use('/api/recreation', require('./routes/api/recreation'))
 // Recreation.gov API Route
 app.get('/api/recreation/activities', async (req, res) => {
   const apikey = process.env.API_KEY;
@@ -47,7 +47,6 @@ app.get('/api/recreation/activities', async (req, res) => {
 app.post('/api/recreation/recareas', async(req, res) => {
   console.log(`fetching data with query:`, req.body.search)
   const search = req.body.search;
-  console.log(search)
   const apikey = process.env.API_KEY;
   const ROOT_URL = `https://ridb.recreation.gov/api/v1/recareas`
   const options = {
@@ -60,7 +59,6 @@ app.post('/api/recreation/recareas', async(req, res) => {
   try {
     const response = await fetch(`${ROOT_URL}?query=${search}`, options)
     const data = await response.json()
-    console.log({data})
     if (response.ok) {
       res.json(data);
     } else {

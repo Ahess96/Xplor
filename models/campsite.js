@@ -2,14 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const campsiteSchema = new Schema({
-    campsiteID: {type: String},
-    facilityID: {type: String},
-    campsiteName: {type: String},
-    campsiteLocation: {type: Number},
-    user: {type: Schema.Types.ObjectId},
+const recAreaSchema = new Schema({
+    recAreaID: {type: String},
+    recAreaName: {type: String},
+    recAreaDirections: {type: String},
+    recAreaDescription: {type: String},
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     date: {type: Date}
+}, {
+    timestamps: true
 })
 
 
-module.exports = mongoose.model('Campsite', campsiteSchema);
+module.exports = mongoose.model('RecArea', recAreaSchema);
