@@ -6,6 +6,7 @@ import UserPage from '../UserPage/UserPage'
 import NavBar from '../../components/NavBar/NavBar'
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service'
+import RecAreaPage from '../RecAreaPage/RecAreaPage'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path='/search' element={<SearchPage />} />
             <Route path='/user' element={<UserPage />} />
+            <Route path='/recareas' element={<RecAreaPage />} />
           </Routes>
         </>
         :

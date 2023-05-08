@@ -20,12 +20,9 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/recreation', require('./routes/api/recreation'))
 // Recreation.gov API Route
 app.get('/api/recreation/activities', async (req, res) => {
-  console.log(`fetching data with query:`, req.query.search)
-  const search = req.query.search
   const apikey = process.env.API_KEY;
   // Make fetch request to API
   const ROOT_URL = `https://ridb.recreation.gov/api/v1/activities`
-  console.log({ROOT_URL})
   const options = {
     method: 'GET',
     headers: {
@@ -39,13 +36,41 @@ app.get('/api/recreation/activities', async (req, res) => {
     if (response.ok) {
       res.json(data);
     } else {
-      res.status(500).json({error: 'Error fetching search from Recreation.gov'})
+      res.status(500).json({error: 'Error fetching activities from Recreation.gov'})
     }
   } catch (error) {
-    console.error('Error fetching search from Recreation.gov:', error)
-    res.status(500).json({error: 'Error fetching search from Recreation.gov'})
+    console.error('Error fetching activities from Recreation.gov:', error)
+    res.status(500).json({error: 'Error fetching activities from Recreation.gov'})
   }
 });
+
+app.post('/api/recreation/recareas', async(req, res) => {
+  console.log(`fetching data with query:`, req.body.search)
+  const search = req.body.search;
+  console.log(search)
+  const apikey = process.env.API_KEY;
+  const ROOT_URL = `https://ridb.recreation.gov/api/v1/recareas`
+  const options = {
+    method: 'GET',
+    headers: {
+      'accept': 'application/json',  
+      apikey
+    }
+  };
+  try {
+    const response = await fetch(`${ROOT_URL}?query=${search}`, options)
+    const data = await response.json()
+    console.log({data})
+    if (response.ok) {
+      res.json(data);
+    } else {
+      res.status(500).json({error: `Error fetching ${req.query} from Recreation.gov`})
+    }
+  } catch (error) {
+    console.error(`Error fetching ${req.query} from Recreation.gov:`, error)
+    res.status(500).json({error: `Error fetching ${req.query} from Recreation.gov`})
+  }
+})
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

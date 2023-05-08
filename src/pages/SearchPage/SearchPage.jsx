@@ -15,7 +15,7 @@ export default function SearchPage() {
 
   function paginateActivities() {
     const start = (page - 1) * ITEMS_PER_PAGE;
-    const end = page * ITEMS_PER_PAGE;
+    const end = (page * ITEMS_PER_PAGE) - 1;
     const items = results.RECDATA || [];
     return items.slice(start, end);
   }
@@ -26,7 +26,7 @@ export default function SearchPage() {
         const activities = await recreationAPI.getActivities();
         setResults(activities)
       } catch (error) {
-        console.error('Error fetching on frontend')
+        console.error('Error fetching activities')
       }
     };
     getActivities();

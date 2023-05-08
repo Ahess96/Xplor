@@ -14,6 +14,8 @@ export default function NavBar({user, estUser}) {
     <nav>
       { user ?
       <>
+        <Link to='/recareas'>Recreation Areas</Link>
+        &nbsp; | &nbsp;
         <Link to='/search'>Search</Link>
         &nbsp; | &nbsp;
         <Link to='/user'>Your Orders</Link>
