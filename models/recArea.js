@@ -7,6 +7,7 @@ const recAreaSchema = new Schema({
     recAreaName: {type: String},
     recAreaDirections: {type: String},
     recAreaDescription: {type: String},
+    activities: {type: Array},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

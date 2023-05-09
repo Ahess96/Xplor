@@ -10,3 +10,13 @@ export function getSearch(search) {
     console.log(search)
     return sendRequest(`${BASE_URL}/recareas`, 'POST', payload)
 }
+
+export function sendRecArea(recAreaDescription, date, recAreaID, recAreaName, recAreaDirections, id) {
+    const payload = {
+        date,
+        recAreaDescription,
+        recAreaDirections,
+        recAreaName
+    }
+    return sendRequest(`${BASE_URL}/recareas/${recAreaID}`, 'POST', payload)
+}

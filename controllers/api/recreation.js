@@ -1,3 +1,38 @@
+const RecArea = require('../../models/recArea');
+
+module.exports = {
+    create,
+}
+
+
+async function create(req, res) {
+    try {
+        const userID = req.user._id;
+        const recAreaID = await req.params.id;
+        const recAreaName = req.body.recAreaName;
+        const recAreaDescription = req.body.recAreaDescription;
+        const recAreaDirections = req.body.recAreaDirections;
+        const date = await req.body.date;
+        if (!recAreaID) {
+            return res.status(400).json({message: 'RecArea not found'})
+        }
+        const recArea = new RecArea({
+            recAreaID,
+            recAreaName,
+            recAreaDirections,
+            recAreaDescription,
+            user: userID,
+            activities: [],
+            date, 
+        });
+        await recArea.save();
+        res.status(201).json({message: 'recArea created'})
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({message: 'server error'})
+    }
+}
+
 // const apikey = process.env.API_KEY;
 // const ROOT_URL = 'https://ridb.recreation.gov/api/v1'
 

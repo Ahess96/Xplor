@@ -77,7 +77,7 @@ export default function RecAreaPage() {
             })}
           </>
         :
-        <RecAreaDetails activeRecArea={activeRecArea} />
+        <RecAreaDetails activeRecArea={activeRecArea} selectActiveRecArea={selectActiveRecArea} />
         }
         </>
         :
