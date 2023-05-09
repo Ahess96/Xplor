@@ -23,7 +23,7 @@ function App() {
         <>
           <Routes>
             <Route path='/search' element={<SearchPage />} />
-            <Route path='/user' element={<UserPage />} />
+            <Route path='/user' element={<UserPage user={user} />} />
             <Route path='/recareas' element={<RecAreaPage />} />
           </Routes>
         </>

@@ -17,7 +17,6 @@ export default function RecAreaPage() {
     const recAreas = paginateRecAreas();
 
     function selectActiveRecArea(recArea) {
-        console.log({recArea})
         setRecArea(recArea);
     }
 
@@ -37,10 +36,8 @@ export default function RecAreaPage() {
         evt.preventDefault();
         try {
             const search = searchInput;
-            console.log({search})
             const recAreas = await recreationAPI.getSearch(search);
             setResults(recAreas)
-            console.log({results})
         } catch (error) {
             console.error('Error fetching search')
         }
@@ -54,12 +51,13 @@ export default function RecAreaPage() {
         <button type='submit' name='search'>Search</button> 
       </form>
       
-      <ul>
+      {/* <ul> */}
         {/* if recAreas are found, list them otherwise show message */}
         { recAreas.length ?
         <>
         { !activeRecArea ?
           <>
+            <ul>
             {recAreas.map((recArea, idx) => (
                 recArea.RecAreaName.length ?
                     <li key={idx} onClick={() => selectActiveRecArea(recArea)}>
@@ -68,6 +66,7 @@ export default function RecAreaPage() {
                     :
                     null  
             ))}
+            </ul>
 
             {Array.from(new Array(pageCount || 1), (_, i) => i + 1).map((num, idx) => {
                 if (num === page) {
@@ -83,7 +82,7 @@ export default function RecAreaPage() {
         :
         <p>Make a valid search to see results!</p>
         }
-      </ul>
+      {/* </ul> */}
     </>
   )
 }

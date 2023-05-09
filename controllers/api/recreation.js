@@ -2,6 +2,10 @@ const RecArea = require('../../models/recArea');
 
 module.exports = {
     create,
+    getAll,
+    deleteRec,
+    // addPlannedActivities,
+    // plans,
 }
 
 
@@ -13,6 +17,7 @@ async function create(req, res) {
         const recAreaDescription = req.body.recAreaDescription;
         const recAreaDirections = req.body.recAreaDirections;
         const date = await req.body.date;
+        const leaveDate = req.body.leaveDate;
         if (!recAreaID) {
             return res.status(400).json({message: 'RecArea not found'})
         }
@@ -24,6 +29,7 @@ async function create(req, res) {
             user: userID,
             activities: [],
             date, 
+            leaveDate,
         });
         await recArea.save();
         res.status(201).json({message: 'recArea created'})
@@ -32,6 +38,30 @@ async function create(req, res) {
         res.status(500).json({message: 'server error'})
     }
 }
+
+async function getAll(req, res) {
+    const plans = await RecArea.find({user: req.user._id}).exec()
+    res.json(plans);
+}
+
+async function deleteRec(req, res) {
+    await RecArea.findByIdAndDelete(req.body._id);
+    res.status(200).json('File Deleted.');
+}
+
+// async function addPlannedActivities(req, res) {
+//     const plans = await RecArea.getPlannedActivities(req.body.recAreaID);
+//     console.log('IN CTRL', {plans})
+//     console.log('ACTIVTY', req.body.activity);
+//     await plans.addActivityToPlans(req.body.activity);
+//     res.json(plans);
+// }
+
+// async function plans(req, res) {
+//     const plans = await RecArea.getPlannedActivities(req.body.recAreaID);
+//     console.log({plans}, 'post')
+//     res.json(plans)
+// }
 
 // const apikey = process.env.API_KEY;
 // const ROOT_URL = 'https://ridb.recreation.gov/api/v1'
