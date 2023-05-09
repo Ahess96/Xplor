@@ -11,6 +11,7 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
     // sanitize html from recreation.gov
     const sanitizedDirection = DOMPurify.sanitize(activeRecArea.RecAreaDirections);
+    const sanitizedDescription = DOMPurify.sanitize(activeRecArea.RecAreaDescription);
     const keywordsArray = activeRecArea.Keywords.split(',');
     const navigate = useNavigate();
 
@@ -48,7 +49,10 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
   return (
     <>
+      <h3>Directions</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
+      <h3>Description</h3>
+      <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
       {/* {keywordsArray.map((keyword, idx) => (
           <form onSubmit={(evt) => handleAddActivity(evt, keyword, activeRecArea)}>
             <li key={idx}>{keyword}</li>

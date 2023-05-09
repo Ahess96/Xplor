@@ -12,7 +12,9 @@ export default function Plans({recArea, setUpdateRecAreas}) {
   return (
     <>
         <div>
-            {recArea.recAreaName}
+            <h2>{recArea.recAreaName}</h2>
+            <p><strong>Arrival</strong>: {new Date(recArea.date).toDateString()}</p>
+            <p><strong>Departure:</strong>{new Date(recArea.leaveDate).toDateString()}</p>
             <form onSubmit={(evt) => handleDelete(evt)}>
                 <input type="hidden" name='_id' value={recArea._id} />
                 <button type='submit'>Delete</button>
