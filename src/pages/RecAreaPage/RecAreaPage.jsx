@@ -35,6 +35,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
     async function handleSearch(evt) {
         evt.preventDefault();
         try {
+            selectActiveRecArea(null)
             const search = searchInput;
             const recAreas = await recreationAPI.getSearch(search);
             setResults(recAreas)

@@ -4,8 +4,7 @@ module.exports = {
     create,
     getAll,
     deleteRec,
-    // addPlannedActivities,
-    // plans,
+    deleteAct,
 }
 
 
@@ -50,19 +49,19 @@ async function deleteRec(req, res) {
     res.status(200).json('File Deleted.');
 }
 
-// async function addPlannedActivities(req, res) {
-//     const plans = await RecArea.getPlannedActivities(req.user._id, req.body.recAreaID, req.body.activity);
-//     console.log('IN CTRL', {plans})
-//     console.log('ACTIVTY', req.body.activity);
-//     await plans.addActivityToPlans(req.body.activity);
-//     res.json(plans);
-// }
-
-// async function plans(req, res) {
-//     const plans = await RecArea.getPlannedActivities(req.user._id, req.body.recAreaID, req.body.activity);
-//     console.log({plans}, 'post')
-//     res.json(plans)
-// }
+async function deleteAct(req, res) {
+    try {
+        const recArea = await RecArea.findById(req.params.id)
+        const actIndex = recArea.activities.indexOf(req.body.act)
+        if (actIndex === -1) res.status(404).json({message: 'Acitivity not found.'})
+        recArea.activities.splice(actIndex, 1)
+        await recArea.save();
+        res.status(200).json({message: 'Activity Deleted.'})
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({message: 'server error'})
+    }
+}
 
 // const apikey = process.env.API_KEY;
 // const ROOT_URL = 'https://ridb.recreation.gov/api/v1'

@@ -10,15 +10,20 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
     const [leaveDate, setLeaveDate] = useState(new Date().toISOString().slice(0, 10))
 
+    const [keywordsArray, setKeywordsArray] = useState([])
+    const recAreaName = activeRecArea.RecAreaName;
     // sanitize html from recreation.gov
     const sanitizedDirection = DOMPurify.sanitize(activeRecArea.RecAreaDirections);
     const sanitizedDescription = DOMPurify.sanitize(activeRecArea.RecAreaDescription);
-    const keywordsArray = activeRecArea.Keywords.split(',');
     const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(activities);
-  }, [activities]);
+    useEffect(() => {
+      const keywords = activeRecArea.Keywords.split(',');
+      // remove name from keywords if present
+      const filteredKeywords = keywords.filter(keyword => keyword !== recAreaName);
+      setKeywordsArray(filteredKeywords);
+    }, [activeRecArea.Keywords, recAreaName]);
+
 
   async function handleAddRecArea(evt, activeRecArea, activities, date, leaveDate) {
     evt.preventDefault();
@@ -52,11 +57,12 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
   return (
     <>
+      <h1>{ recAreaName }</h1>
       <h3>Directions</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
       <h3>Description</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
-      {keywordsArray.map((keyword, idx) => (
+      { keywordsArray?.map((keyword, idx) => (
         // only show keywords that are not included in activities
         !activities.includes(keyword) ? (
           <form onSubmit={(evt) => handleAddActivity(evt, keyword)}>
