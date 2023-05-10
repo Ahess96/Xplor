@@ -11,7 +11,15 @@ import RecAreaPage from '../RecAreaPage/RecAreaPage'
 
 function App() {
   
+
+  const [activeRecArea, setRecArea] = useState(null);
   const [user, setUser] = useState(getUser())
+
+
+  function selectActiveRecArea(recArea) {
+    setRecArea(recArea);
+  }
+
   function estUser(user) {
     setUser(user)
   }
@@ -22,9 +30,9 @@ function App() {
       { user ?
         <>
           <Routes>
-            <Route path='/search' element={<SearchPage />} />
+            <Route path='/search' element={<SearchPage activeRecArea={activeRecArea} selectActiveRecArea={selectActiveRecArea} />} />
             <Route path='/user' element={<UserPage user={user} />} />
-            <Route path='/recareas' element={<RecAreaPage />} />
+            <Route path='/recareas' element={<RecAreaPage activeRecArea={activeRecArea} selectActiveRecArea={selectActiveRecArea} />} />
           </Routes>
         </>
         :

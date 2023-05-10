@@ -14,25 +14,32 @@ const recAreaSchema = new Schema({
         required: true
     },
     date: {type: Date},
-    leaveDate: {type: Date}
+    leaveDate: {type: Date},
+    isConfirmed: { type: Boolean, default: false }
 }, {
     timestamps: true,
     // toJSON: { virtuals: true}
 });
 
 
-recAreaSchema.statics.getPlannedActivities = function(recAreaID) {
-    return this.findOneAndUpdate(
-        { recAreaID },
-        { upsert: true, new: true }
-    );
-};
+// recAreaSchema.statics.getPlannedActivities = function(user, recAreaID, activities) {
+//     return this.findOneAndUpdate(
+//         // query for the following
+//         { user, recAreaID, isConfirmed: false },
+//         // update with the following if it is upserted
+//         { user, recAreaID },
+//         // create doc if it doesn't exist 
+//         { upsert: true, new: true }
+//     );
+// };
 
-recAreaSchema.methods.addActivityToPlans = async function(activity) {
-    const plans = this;
-    console.log({activity});
-    plans.activities.push({activity});
-}
+// add 
+
+// recAreaSchema.methods.addActivityToPlans = async function(activity) {
+//     const plans = this;
+//     console.log({activity});
+//     plans.activities.push({activity});
+// }
 
 
 module.exports = mongoose.model('RecArea', recAreaSchema);

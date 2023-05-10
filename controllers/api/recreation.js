@@ -16,6 +16,7 @@ async function create(req, res) {
         const recAreaName = req.body.recAreaName;
         const recAreaDescription = req.body.recAreaDescription;
         const recAreaDirections = req.body.recAreaDirections;
+        const activities = req.body.activities;
         const date = await req.body.date;
         const leaveDate = req.body.leaveDate;
         if (!recAreaID) {
@@ -27,7 +28,7 @@ async function create(req, res) {
             recAreaDirections,
             recAreaDescription,
             user: userID,
-            activities: [],
+            activities,
             date, 
             leaveDate,
         });
@@ -50,7 +51,7 @@ async function deleteRec(req, res) {
 }
 
 // async function addPlannedActivities(req, res) {
-//     const plans = await RecArea.getPlannedActivities(req.body.recAreaID);
+//     const plans = await RecArea.getPlannedActivities(req.user._id, req.body.recAreaID, req.body.activity);
 //     console.log('IN CTRL', {plans})
 //     console.log('ACTIVTY', req.body.activity);
 //     await plans.addActivityToPlans(req.body.activity);
@@ -58,7 +59,7 @@ async function deleteRec(req, res) {
 // }
 
 // async function plans(req, res) {
-//     const plans = await RecArea.getPlannedActivities(req.body.recAreaID);
+//     const plans = await RecArea.getPlannedActivities(req.user._id, req.body.recAreaID, req.body.activity);
 //     console.log({plans}, 'post')
 //     res.json(plans)
 // }

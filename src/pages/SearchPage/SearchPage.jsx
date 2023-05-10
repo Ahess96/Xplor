@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const ITEMS_PER_PAGE = 24
 
-export default function SearchPage() {
+export default function SearchPage({activeRecArea, selectActiveRecArea}) {
   
   // current page we're on will be at least 1 
   const [page, setPage] = useState(1)
@@ -34,6 +34,8 @@ export default function SearchPage() {
   
   return (
     <>
+      {activeRecArea?.Keywords}
+      
       <ul>
         {activities.map((r, idx) => (
           <li key={idx}>{r.ActivityName}</li>

@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify';
 
 export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
+    const [activities, setActivities] = useState([])
     // const [plans, setPlans] = useState(null)
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
     const [leaveDate, setLeaveDate] = useState(new Date().toISOString().slice(0, 10))
@@ -24,19 +25,28 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
   //   getPlans();
   // }, [])
 
-  async function handleAddRecArea(evt, activeRecArea, date, leaveDate) {
+  useEffect(() => {
+    console.log(activities);
+  }, [activities]);
+
+  async function handleAddRecArea(evt, activeRecArea, activities, date, leaveDate) {
     evt.preventDefault();
     // setDate(evt.target.value);
-    await recreationAPI.sendRecArea(activeRecArea.RecAreaDescription, date, leaveDate, activeRecArea.RecAreaID, activeRecArea.RecAreaName, activeRecArea.RecAreaDirections);
-    selectActiveRecArea([]);
-    navigate('/user');
+    await recreationAPI.sendRecArea(activeRecArea.RecAreaDescription, activities, date, leaveDate, activeRecArea.RecAreaID, activeRecArea.RecAreaName, activeRecArea.RecAreaDirections);
+    // selectActiveRecArea([]);
+    navigate('/search');
   }
 
-  // async function handleAddActivity(evt, keyword, activeRecArea) {
-  //   evt.preventDefault();
-  //   const updatedPlans = await recreationAPI.addActivityToPlans(keyword, activeRecArea.RecAreaID);
-  //   setPlans(updatedPlans)
-  // }
+  function handleAddActivity(evt, keyword, activeRecArea) {
+    evt.preventDefault();
+    console.log(keyword);
+    let actArr = [...activities];
+    actArr.push(keyword);
+    setActivities(actArr);
+    console.log(activities);
+    // const updatedPlans = await recreationAPI.addActivityToPlans(keyword, activeRecArea.RecAreaID);
+    // setPlans(updatedPlans)
+  }
 
   function handleChangeDate(evt) {
     setDate(evt.target.value);
@@ -53,13 +63,13 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
       <h3>Description</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
-      {/* {keywordsArray.map((keyword, idx) => (
+      {keywordsArray.map((keyword, idx) => (
           <form onSubmit={(evt) => handleAddActivity(evt, keyword, activeRecArea)}>
             <li key={idx}>{keyword}</li>
             <button type='submit'>Add</button>
           </form>
-      ))} */}
-      <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, date, leaveDate)}>
+      ))}
+      <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)}>
         <input type="date" value={date} name='date'
         onChange={handleChangeDate}
         />
