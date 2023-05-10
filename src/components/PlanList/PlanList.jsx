@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as recreationAPI from '../../utilities/recreation-api'
 
-export default function PlanList( {recArea, isOpen}) {
+export default function PlanList( {recArea, isOpen, setUpdateRecAreas}) {
   
+
     async function handleDelete(evt, act) {
         evt.preventDefault()
         await recreationAPI.deleteActivity(act, evt.target['_id'].value)
+        setUpdateRecAreas(true)
     }
     
   return (

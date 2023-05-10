@@ -7,6 +7,8 @@ export default function Plans({recArea, setUpdateRecAreas}) {
 
   const [isOpen, setIsOpen] = useState(false);
 
+
+
   async function handleDelete(evt) {
     evt.preventDefault();
     await recreationAPI.deleteRecArea(evt.target['_id'].value);
@@ -28,7 +30,7 @@ export default function Plans({recArea, setUpdateRecAreas}) {
               <FaChevronDown className='inline-block ml-1' />
               </p>
 
-              <PlanList isOpen= {isOpen} recArea={recArea} />
+              <PlanList isOpen= {isOpen} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />
                 
             </div>
             <form onSubmit={(evt) => handleDelete(evt)}>
