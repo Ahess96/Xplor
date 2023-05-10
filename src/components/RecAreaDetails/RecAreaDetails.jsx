@@ -16,15 +16,6 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
     const keywordsArray = activeRecArea.Keywords.split(',');
     const navigate = useNavigate();
 
-
-  // useEffect(function() {
-  //   async function getPlans() {
-  //     const plans = await recreationAPI.getPlans(activeRecArea.RecAreaID);
-  //     setPlans(plans);
-  //   }
-  //   getPlans();
-  // }, [])
-
   useEffect(() => {
     console.log(activities);
   }, [activities]);
@@ -33,19 +24,21 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
     evt.preventDefault();
     // setDate(evt.target.value);
     await recreationAPI.sendRecArea(activeRecArea.RecAreaDescription, activities, date, leaveDate, activeRecArea.RecAreaID, activeRecArea.RecAreaName, activeRecArea.RecAreaDirections);
-    // selectActiveRecArea([]);
-    navigate('/search');
+    selectActiveRecArea([]);
+    navigate('/user');
   }
 
-  function handleAddActivity(evt, keyword, activeRecArea) {
+  function handleAddActivity(evt, keyword) {
     evt.preventDefault();
-    console.log(keyword);
     let actArr = [...activities];
     actArr.push(keyword);
     setActivities(actArr);
-    console.log(activities);
-    // const updatedPlans = await recreationAPI.addActivityToPlans(keyword, activeRecArea.RecAreaID);
-    // setPlans(updatedPlans)
+  }
+
+  function handleRemoveActivity(evt, keyword) {
+    evt.preventDefault();
+    const updatedActivities = activities.filter(act => act !== keyword)
+    setActivities(updatedActivities)
   }
 
   function handleChangeDate(evt) {
@@ -64,11 +57,20 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       <h3>Description</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
       {keywordsArray.map((keyword, idx) => (
-          <form onSubmit={(evt) => handleAddActivity(evt, keyword, activeRecArea)}>
+        // only show keywords that are not included in activities
+        !activities.includes(keyword) ? (
+          <form onSubmit={(evt) => handleAddActivity(evt, keyword)}>
             <li key={idx}>{keyword}</li>
-            <button type='submit'>Add</button>
+            <button className='blue' type='submit'>Add</button>
           </form>
+        ) : (
+          <form onSubmit={(evt) => handleRemoveActivity(evt, keyword)}>
+            <li key={idx}>{keyword}</li>
+            <button className='red' type='submit'>Remove</button>
+          </form>
+        )
       ))}
+
       <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)}>
         <input type="date" value={date} name='date'
         onChange={handleChangeDate}
