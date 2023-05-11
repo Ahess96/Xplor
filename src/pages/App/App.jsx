@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service'
 import RecAreaPage from '../RecAreaPage/RecAreaPage'
+import HomePage from '../HomePage/HomePage'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       { user ?
         <>
           <Routes>
+            <Route path='/' element={<HomePage />} />
             <Route path='/search' element={<SearchPage activeRecArea={activeRecArea} selectActiveRecArea={selectActiveRecArea} />} />
             <Route path='/user' element={<UserPage user={user} />} />
             <Route path='/recareas' element={<RecAreaPage activeRecArea={activeRecArea} selectActiveRecArea={selectActiveRecArea} />} />

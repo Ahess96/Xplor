@@ -6,7 +6,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 router.get('/', recreationCtrl.getAll);
 router.post('/recareas/:id', recreationCtrl.create);
 router.delete('/:id', recreationCtrl.deleteRec);
-router.delete('/:id/delete-activity', recreationCtrl.deleteAct);
+router.put('/:id/delete-activity', recreationCtrl.deleteAct);
 
 
 module.exports = router;

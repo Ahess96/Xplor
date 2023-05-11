@@ -33,7 +33,7 @@ export function sendRecArea(recAreaDescription, activities, date, leaveDate, rec
 
 export function deleteActivity(act, recAreaID) {
     const payload = {act}
-    return sendRequest(`${BASE_URL}/${recAreaID}/delete-activity`, 'DELETE', payload)
+    return sendRequest(`${BASE_URL}/${recAreaID}/delete-activity`, 'PUT', payload)
 }
 
 // export function addActivityToPlans(activity, recAreaID) {

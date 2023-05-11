@@ -24,7 +24,7 @@ export default function Plans({recArea, setUpdateRecAreas}) {
             <p><strong>Departure:</strong>{new Date(recArea.leaveDate).toDateString()}</p>
             <div className='relative'>
               <p 
-                className='cursor-pointer'
+                className='cursor-pointer z-40'
                 onClick={() => setIsOpen(!isOpen)}
               ><strong>Planned Activities</strong>
               <FaChevronDown className='inline-block ml-1' />

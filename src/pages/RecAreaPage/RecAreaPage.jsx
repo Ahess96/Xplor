@@ -11,14 +11,10 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
     const [page, setPage] = useState(1)
     const [searchInput, setSearchInput] = useState('');
     const [results, setResults] = useState({})
-    // const [activeRecArea, setRecArea] = useState(null);
 
     const pageCount = Math.ceil((results?.RECDATA?.length || 1) / ITEMS_PER_PAGE);
     const recAreas = paginateRecAreas();
 
-    // function selectActiveRecArea(recArea) {
-    //     setRecArea(recArea);
-    // }
 
     function paginateRecAreas() {
         const start = (page - 1) * ITEMS_PER_PAGE;
