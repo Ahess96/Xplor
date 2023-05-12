@@ -26,8 +26,10 @@ export default function LoginForm({estUser}) {
   return (
     <div>
       <div className="form-container">
-        <form autoComplete='off' onSubmit={handleSubmit}>
-          <label>Email</label>
+        <form 
+        className='flex flex-col items-center justify-center'
+        autoComplete='off' onSubmit={handleSubmit}>
+          <label className='py-2'>Email</label>
             <input type='text' name='email' value={credentials.email} onChange={handleChange} required />
           <label>Password</label>
             <input type='password' name='password' value={credentials.password} onChange={handleChange} required />

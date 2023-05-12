@@ -7,14 +7,20 @@ export default function AuthPage({estUser}) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <main className='AuthPage'>
-            <h2 onClick={() => setShowLogin(!showLogin)}>
-                {showLogin ? 'Sign Up' : 'Log In'}
-            </h2>
-            {showLogin ? <LoginForm estUser={estUser} /> 
-            :
-            <SignUpForm estUser={estUser} />
-            }
+    <main className='AuthPage min-h-screen'
+    style={{backgroundImage: 'url(https://images.unsplash.com/photo-1545063168-0e149bddf68c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)'}}>
+      <div className='flex flex-col justify-center items-center p-20'>
+        {showLogin ? <LoginForm estUser={estUser} /> 
+        :
+        <SignUpForm estUser={estUser} />
+        }
+      <h2 
+        className='border rounded-md hover:bg-orange-100 px-2'
+        onClick={() => setShowLogin(!showLogin)}>
+            {showLogin ? 'Sign Up' : 'Log In'}
+      </h2>
+
+      </div>
     </main>
   );
 }
