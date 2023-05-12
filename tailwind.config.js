@@ -5,6 +5,10 @@ module.exports = {
     ],
     theme: {
       extend: {},
+      fontFamily: {
+        'quicksand': ['Quicksand', 'sans-serif'],
+        'worksands': ['"Work Sans"', 'sans-serif'],
+      }
     },
   plugins: [
     

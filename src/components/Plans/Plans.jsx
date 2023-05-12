@@ -18,24 +18,23 @@ export default function Plans({recArea, setUpdateRecAreas}) {
   
   return (
     <>
-        <div className='flex flex-col items-center justify-center'>
-            <h2>{recArea.recAreaName}</h2>
+        <div className='flex flex-col items-center justify-center border-2 m-4 w-1/2 py-8 rounded-md hover:bg-orange-100 transform hover:scale-105 transition duration-200'>
+            <h2 className='text-xl font-semibold font-quicksand py-6'>{recArea.recAreaName}</h2>
             <p><strong>Arrival:</strong> {new Date(recArea.date).toDateString()}</p>
             <p><strong>Departure:</strong>{new Date(recArea.leaveDate).toDateString()}</p>
             <div className='relative'>
               <p 
-                className='cursor-pointer z-40'
+                className='cursor-pointer z-40 hover:text-lime-600 transform hover:scale-105 transition duration-200'
                 onClick={() => setIsOpen(!isOpen)}
               ><strong>Planned Activities</strong>
               <FaChevronDown className='inline-block ml-1' />
               </p>
-
               <PlanList isOpen= {isOpen} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />
                 
             </div>
             <form onSubmit={(evt) => handleDelete(evt)}>
                 <input type="hidden" name='_id' value={recArea._id} />
-                <button type='submit'>Delete</button>
+                <button className='hover:text-orange-700' type='submit'>Delete</button>
             </form>
         </div>
     </>

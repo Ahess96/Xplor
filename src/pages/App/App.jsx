@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <main className="app">
+    <main className="app font-worksands">
       <NavBar estUser={estUser} user={user} />
       { user ?
         <>

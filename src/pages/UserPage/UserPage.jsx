@@ -25,8 +25,8 @@ export default function UserPage() {
   }, [startUseEffect])
   
   return (
-    <>
+    <div className='flex flex-col items-center justify-center'>
       {recAreas.map((recArea, idx) => <Plans key={idx} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />)}
-    </>
+    </div>
   )
 }
