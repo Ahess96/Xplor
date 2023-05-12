@@ -43,15 +43,13 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
 
 
   return (
-    <>
-      <div className='mt-12'>
-        <h2 className='text-center'>Search Keywords to Find Recreation Areas</h2>
-      </div>
-
+    <div className='flex flex-col'>
       {/* Search Bar */}
-      
-      <div className='flex justify-center items-center mt-36 mb-12'>
-        <form onSubmit={(evt) => handleSearch(evt)} className="w-full md:w-1/4 mt-5">
+      <div className='flex flex-col justify-center items-center mt-36 mb-12'>
+      <h1 className=''>Find All Recreation Sites Provided by Recreation.gov</h1>
+
+        <form onSubmit={(evt) => handleSearch(evt)}>
+        <div className='flex flex-col'>
           <input
             type="text"
             placeholder='e.g. california hike'
@@ -63,10 +61,11 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
           <button
             type='submit'
             name='search'
-            className='bg-gray-400 text-white rounded-lg px-4 py-2 ml-6'
+            className='border rounded-md hover:bg-orange-100 px-2 mt-2'
           >
             Search
           </button>
+          </div>
         </form>
       </div>
 
@@ -129,10 +128,11 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
         }
         </>
         :
-        <div className=''>
-          <p className='text-center'>Make a valid search to see results!</p>
+        
+        <div className='self-center'>
+          <p className=''>Make a valid search to see results!</p>
         </div>
         }
-    </>
+    </div>
   )
 }
