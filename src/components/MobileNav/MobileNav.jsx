@@ -29,8 +29,8 @@ export default function MobileNav({user, handleLogout, close}) {
                     animation ? 'scale-100' : 'scale-95'
                 }`}>
                     <div className='flex items-center justify-between'>
-                        <h1>Navigation</h1>
-                        <AiOutlineClose className='w-7 h-7 hover:scale-110 transition-all cursor-pointer'
+                        <h1 className='text-black'>Navigation</h1>
+                        <AiOutlineClose className='w-7 h-7 hover:scale-110 transition-all cursor-pointer text-black'
                         onClick={close}/>
                     </div>
                     <div className='mt-5 divide-y' onClick={close}>

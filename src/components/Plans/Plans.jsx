@@ -18,7 +18,7 @@ export default function Plans({recArea, setUpdateRecAreas}) {
   
   return (
     <>
-        <div>
+        <div className='flex flex-col items-center justify-center'>
             <h2>{recArea.recAreaName}</h2>
             <p><strong>Arrival:</strong> {new Date(recArea.date).toDateString()}</p>
             <p><strong>Departure:</strong>{new Date(recArea.leaveDate).toDateString()}</p>
