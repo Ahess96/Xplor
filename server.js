@@ -6,6 +6,7 @@ const path = require('path');
 require('./config/database');
 
 const app = express();
+const ensureLoggedIn = require('./config/ensureLoggedIn')
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,7 +18,7 @@ app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/recreation', require('./routes/api/recreation'))
+app.use('/api/recreation', ensureLoggedIn, require('./routes/api/recreation'))
 // Recreation.gov API Route
 app.get('/api/recreation/activities', async (req, res) => {
   const apikey = process.env.API_KEY;

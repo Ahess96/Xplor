@@ -46,7 +46,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
     <div className='flex flex-col'>
       {/* Search Bar */}
       <div className='flex flex-col justify-center items-center mt-36 mb-12'>
-      <h1 className=''>Find All Recreation Sites Provided by Recreation.gov</h1>
+      <h1 className='pb-4 font-semibold'>Find All the Recreation Sites Provided by <Link target='blank' to='https://www.recreation.gov/'>Recreation.gov</Link></h1>
 
         <form onSubmit={(evt) => handleSearch(evt)}>
         <div className='flex flex-col'>

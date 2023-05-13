@@ -56,36 +56,58 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
 
   return (
-    <>
-      <h1>{ recAreaName }</h1>
-      <h3>Directions</h3>
+    <div className='flex flex-col justify-center items-center px-8'>
+      <h1 className='font-bold font-quicksand text-xl'>{ recAreaName.toUpperCase() }</h1>
+      <h3 className='font-bold font-quicksand text-xl m-4'>Directions</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
-      <h3>Description</h3>
+      <h3 className='font-bold font-quicksand text-xl m-4'>Description</h3>
       <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
-      { keywordsArray?.map((keyword, idx) => (
+
+      <h3 className='font-bold font-quicksand text-xl m-4'>Add Activities to your visit:</h3>
+      <div className='border rounded-md bg-amber-100 p-2'>
+      { keywordsArray.length > 1 ? 
+       keywordsArray?.map((keyword, idx) => (
         // only show keywords that are not included in activities
         !activities.includes(keyword) ? (
-          <form onSubmit={(evt) => handleAddActivity(evt, keyword)}>
-            <li key={idx}>{keyword}</li>
-            <button className='blue' type='submit'>Add</button>
-          </form>
+            <form
+              className='flex justify-between items-center min-w-full my-1'
+              onSubmit={(evt) => handleAddActivity(evt, keyword)}>
+              <p className='mr-4'>{keyword}</p>
+              <button className='bg-indigo-300 border rounded-md px-1 transform hover:scale-110 transition duration-200' type='submit'>Add</button>
+            </form>
         ) : (
-          <form onSubmit={(evt) => handleRemoveActivity(evt, keyword)}>
-            <li key={idx}>{keyword}</li>
-            <button className='red' type='submit'>Remove</button>
-          </form>
+            <form 
+            className='flex justify-between items-center min-w-full'
+            onSubmit={(evt) => handleRemoveActivity(evt, keyword)}>
+              <p 
+              className='mr-4'
+              key={idx}>{keyword}</p>
+              <button className='bg-orange-800 border rounded-md px-1 text-white transform hover:scale-110 transition duration-200' type='submit'>Remove</button>
+            </form>
         )
-      ))}
+      ))
 
-      <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)}>
-        <input type="date" value={date} name='date'
-        onChange={handleChangeDate}
-        />
-        <input type="date" value={leaveDate} name='leaveDate'
-        onChange={handleChangeLeaveDate}
-        />
-        <button type='submit'>Add to trip</button>
-      </form>
-    </>
+      :
+      <></>}
+      </div>
+
+      <div className='m-8'>
+        <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)}>
+          <input 
+          className='m-2 transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
+          type="date" value={date} name='date'
+          onChange={handleChangeDate}
+          />
+          <input 
+          className='m-2 transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
+          type="date" value={leaveDate} name='leaveDate'
+          onChange={handleChangeLeaveDate}
+          />
+          <button 
+          className='ml-2 px-1 border rounded-md bg-indigo-300 transform hover:scale-110 transition duration-200'
+          type='submit'>Add to Trip</button>
+        </form>
+      </div>
+    </div>
   )
 }
