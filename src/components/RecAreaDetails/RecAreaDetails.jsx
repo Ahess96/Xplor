@@ -95,14 +95,16 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       </div>
 
       <div className='m-8'>
-        <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)}>
+        <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)} className='flex flex-col gap-2' >
+          <label htmlFor='date'>Arrival:</label>
           <input 
-          className='m-2 transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
+          className='transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
           type="date" value={date} name='date'
           onChange={handleChangeDate}
           />
+          <label htmlFor="leaveDate">Departure:</label>
           <input 
-          className='m-2 transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
+          className='transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'
           type="date" value={leaveDate} name='leaveDate'
           onChange={handleChangeLeaveDate}
           />
