@@ -46,7 +46,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
     <div className='flex flex-col'>
       {/* Search Bar */}
       <div className='flex flex-col justify-center items-center mt-36 mb-12'>
-      <h1 className='pb-4 font-semibold'>Find All the Recreation Sites Provided by <Link target='blank' to='https://www.recreation.gov/'>Recreation.gov</Link></h1>
+      <h1 className='pb-8 font-bold text-lg'>Find All the Recreation Sites Provided by <Link className='text-amber-800' target='blank' to='https://www.recreation.gov/'>Recreation.gov</Link></h1>
 
         <form onSubmit={(evt) => handleSearch(evt)}>
         <div className='flex flex-col'>
@@ -67,6 +67,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
           </button>
           </div>
         </form>
+        <p className='mt-6 text-center'>Orange cards indicate that Recreation.gov provides a list of available activities</p>
       </div>
 
         {/* if recAreas are found, list them otherwise show message */}
@@ -78,7 +79,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
             {recAreas.map((recArea, idx) => (
                 recArea.RecAreaName.length ?
                   <div key={idx} onClick={() => selectActiveRecArea(recArea)}                  
-                  className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4'
+                  className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 transform hover:scale-110 transition duration-200'
                   >
                     {recArea.Keywords ? 
                     <div className='bg-amber-200 h-32 rounded-lg p-4'>
@@ -99,13 +100,13 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
                     null  
             ))}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-8">
             {Array.from(new Array(pageCount || 1), (_, i) => i + 1).map((num, idx) => {
               if (num === page) {
                 return (
                   <strong
                     key={idx}
-                    className="px-3 py-2 bg-gray-800 text-white rounded-md mr-2"
+                    className="px-3 py-2 bg-lime-600 text-white rounded-md mr-2"
                   >
                     {num}
                   </strong>
@@ -115,7 +116,7 @@ export default function RecAreaPage({activeRecArea, selectActiveRecArea}) {
                 <Link
                   onClick={() => setPage(num)}
                   key={idx}
-                  className="px-3 py-2 bg-gray-200 text-gray-800 rounded-md mr-2 hover:bg-gray-300"
+                  className="px-3 py-2 bg-lime-300 text-gray-800 rounded-md mr-2 hover:bg-lime-600"
                 >
                   {num}
                 </Link>

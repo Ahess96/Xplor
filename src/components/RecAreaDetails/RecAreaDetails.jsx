@@ -56,13 +56,16 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
 
   return (
-    <div className='flex flex-col justify-center items-center px-8'>
+    <div className='flex flex-col text-center justify-center items-center px-8'>
       <h1 className='font-bold font-quicksand text-xl'>{ recAreaName.toUpperCase() }</h1>
-      <h3 className='font-bold font-quicksand text-xl m-4'>Directions</h3>
-      <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
-      <h3 className='font-bold font-quicksand text-xl m-4'>Description</h3>
-      <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
-
+      <div className='border my-4 p-6'>
+        <h3 className='font-bold font-quicksand text-xl m-4'>Directions</h3>
+        <div dangerouslySetInnerHTML={{ __html: sanitizedDirection}}></div>
+      </div>
+      <div className='border my-4 p-6'>
+        <h3 className='font-bold font-quicksand text-xl m-4'>Description</h3>
+        <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
+      </div>
       <h3 className='font-bold font-quicksand text-xl m-4'>Add Activities to your visit:</h3>
       <div className='border rounded-md bg-amber-100 p-2'>
       { keywordsArray.length > 1 ? 
@@ -88,7 +91,7 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       ))
 
       :
-      <></>}
+      <div className=''>No Activities provided by Recreation.gov</div>}
       </div>
 
       <div className='m-8'>

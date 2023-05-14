@@ -18,7 +18,7 @@ export default function Plans({recArea, setUpdateRecAreas}) {
   
   return (
     <>
-        <div className='flex flex-col items-center justify-center border-2 m-4 w-1/2 py-8 rounded-md hover:bg-orange-100 transform hover:scale-105 transition duration-200'>
+        <div className='flex flex-col items-center justify-center border-2 m-4 w-1/2 py-8 px-2 rounded-md backdrop-blur-sm bg-gray-200 bg-opacity-40 z-20 hover:bg-orange-100 transform hover:scale-105 transition duration-200'>
             <h2 className='text-xl font-semibold font-quicksand py-6'>{recArea.recAreaName}</h2>
             <p><strong>Arrival:</strong> {new Date(recArea.date).toDateString()}</p>
             <p><strong>Departure:</strong>{new Date(recArea.leaveDate).toDateString()}</p>

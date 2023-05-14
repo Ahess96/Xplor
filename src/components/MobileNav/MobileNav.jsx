@@ -35,7 +35,7 @@ export default function MobileNav({user, handleLogout, close}) {
                     </div>
                     <div className='mt-5 divide-y' onClick={close}>
                         <Link className='block py-2 text-zinc-500' to='/recareas'>Recreation Areas</Link>
-                        <Link className='block py-2 text-zinc-500' to='/search'>Search</Link>
+                        {/* <Link className='block py-2 text-zinc-500' to='/search'>Search</Link> */}
                         <Link className='block py-2 text-zinc-500' to='/user'>Your Orders</Link>
                         <Link className='block py-2 text-zinc-500' to='' onClick={handleLogout}>Logout</Link>
                     </div>
