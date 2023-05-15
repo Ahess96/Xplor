@@ -8,6 +8,8 @@ Visit recreation sites easier.
 
 Xplor provides a user friendly, clutter free platform to query all of the recreation sites provided by Recreation.gov's RESTful API and plan a trip. 
 
+[Xplor Demo](https://xplor.herokuapp.com/)
+
 ![Home Page](public/Screenshot%202023-05-14%20at%203.39.34%20PM.png)
 
 Authenticated users can query for recreation sites and view any information about these sites provided by Recreation.gov. Some sites provide more comprehensive details than others, such as activities that can be enjoyed at that destination. When this is the case, users can add those activities to their trip plan so that they have a quick overview of what to do when they arrive. Users can also add custom notes to their trips.
