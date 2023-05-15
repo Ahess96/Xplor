@@ -19,7 +19,7 @@ export function deleteRecArea(recAreaID) {
     return sendRequest(`${BASE_URL}/${recAreaID}`, 'DELETE', payload)
 }
 
-export function sendRecArea(recAreaDescription, activities, date, leaveDate, recAreaID, recAreaName, recAreaDirections) {
+export function sendRecArea(recAreaDescription, activities, notes, date, leaveDate, recAreaID, recAreaName, recAreaDirections) {
     const payload = {
         date,
         leaveDate,
@@ -27,6 +27,7 @@ export function sendRecArea(recAreaDescription, activities, date, leaveDate, rec
         recAreaDescription,
         recAreaDirections,
         recAreaName,
+        notes,
     }
     return sendRequest(`${BASE_URL}/recareas/${recAreaID}`, 'POST', payload)
 }

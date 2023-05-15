@@ -13,6 +13,7 @@ const recAreaSchema = new Schema({
         ref: 'User',
         required: true
     },
+    notes: {type: String},
     date: {type: Date},
     leaveDate: {type: Date},
 }, {
