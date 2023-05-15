@@ -10,7 +10,7 @@ Xplor provides a user friendly, clutter free platform to query all of the recrea
 
 ![Home Page](public/Screenshot%202023-05-14%20at%203.39.34%20PM.png)
 
-Authenticated users can query for recreation sites and view any information about these sites provided by Recreation.gov. Some sites provide more comprehensive details than others, such as activities that can be enjoyed at that destination. When this is the case, users can add those activities to their trip plan so that they have a quick overview of what to do when they arrive. In the near future, users will be able to add custom notes to their trips as well.
+Authenticated users can query for recreation sites and view any information about these sites provided by Recreation.gov. Some sites provide more comprehensive details than others, such as activities that can be enjoyed at that destination. When this is the case, users can add those activities to their trip plan so that they have a quick overview of what to do when they arrive. Users can also add custom notes to their trips.
 
 ![Search Results](public/Screenshot%202023-05-14%20at%203.45.22%20PM.png)
 

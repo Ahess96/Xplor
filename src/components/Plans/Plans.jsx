@@ -33,7 +33,7 @@ export default function Plans({recArea, setUpdateRecAreas}) {
                 
             </div>
             <div>
-              <p>{recArea.notes}</p>
+              <p className='italic'>{recArea.notes}</p>
             </div>
             <form onSubmit={(evt) => handleDelete(evt)}>
                 <input type="hidden" name='_id' value={recArea._id} />

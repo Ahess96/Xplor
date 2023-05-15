@@ -99,8 +99,8 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       </div>
 
       <h3 className='font-bold font-quicksand text-xl m-4'>Notes</h3>
-      <form>
-        <input onChange={handleChangeNotes} type="text" name="notes" value={notes} />
+      <form className='border'>
+        <input className='border-2 border-orange-400 rounded-md bg-white rounded-lg px-4 py-2' onChange={handleChangeNotes} type="text" name="notes" value={notes} />
       </form>
 
 
