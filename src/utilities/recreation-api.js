@@ -35,15 +35,3 @@ export function deleteActivity(act, recAreaID) {
     const payload = {act}
     return sendRequest(`${BASE_URL}/${recAreaID}/delete-activity`, 'PUT', payload)
 }
-
-// export function addActivityToPlans(activity, recAreaID) {
-//     const payload = {activity, recAreaID}
-//     console.log('REACT', payload)
-//     return sendRequest(`${BASE_URL}/recareas/activities`, 'POST', payload)
-// }
-
-// export function getPlans(recAreaID) {
-//     const payload = {recAreaID}
-//     console.log('sent')
-//     return sendRequest(`${BASE_URL}/recareas/plans`, 'POST', payload)
-// }

@@ -27,7 +27,6 @@ export default function NavBar({user, estUser}) {
       <div className='hidden sm:block text-xl'>
         <div className='flex gap-8 items-center'>        
           <Link className='hover:text-lime-600 cursor-pointer hover:font-bold transform hover:scale-110 transition duration-200' to='/recareas'>Recreation Areas</Link>
-          {/* <Link className='hover:text-lime-600 cursor-pointer hover:font-bold transform hover:scale-110 transition duration-200' to='/search'>Search</Link> */}
           <Link className='hover:text-lime-600 cursor-pointer hover:font-bold transform hover:scale-110 transition duration-200' to='/user'>Your Orders</Link>
           <Link className='hover:text-lime-600 cursor-pointer hover:font-bold transform hover:scale-110 transition duration-200 mr-6' to='' onClick={handleLogout}>Logout</Link>
         </div>
@@ -36,7 +35,6 @@ export default function NavBar({user, estUser}) {
       :
 
       <div>
-        <Link className='hover:text-lime-600 cursor-pointer hover:font-bold transform hover:scale-110 transition duration-200 mr-6 text-xl' to='/'>Login / Sign Up</Link>
       </div>
   
       }

@@ -25,12 +25,26 @@ export default function UserPage() {
   }, [startUseEffect])
   
   return (
-    <div style={{backgroundImage: 'url(ganapathy-kumar-L75D18aVal8-unsplash.jpg)', backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover' }}>
-      <div className='flex flex-col items-center justify-center'>
-        <h1 className='text-2xl font-bold m-4'>Xplor Forever</h1>
-        <h2 className='text-lg'>Enjoy your trip</h2>
-        {recAreas.map((recArea, idx) => <Plans key={idx} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />)}
+    <div
+      className="relative"
+      style={{
+        backgroundImage: 'url(ganapathy-kumar-L75D18aVal8-unsplash.jpg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        height: '100vh',
+      }}
+    >
+      <div
+        className="absolute inset-0 overflow-auto"
+        style={{ backgroundColor: 'rgba(0,0,0,0.1)' }}
+      >
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-bold m-4">Xplor Forever</h1>
+          <h2 className="text-lg">Enjoy your trip</h2>
+          {recAreas.map((recArea, idx) => (
+            <Plans key={idx} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />
+          ))}
+        </div>
       </div>
     </div>
   )
