@@ -16,6 +16,7 @@ async function create(req, res) {
         const recAreaDescription = req.body.recAreaDescription;
         const recAreaDirections = req.body.recAreaDirections;
         const activities = req.body.activities;
+        const notes = req.body.notes;
         const date = await req.body.date;
         const leaveDate = req.body.leaveDate;
         if (!recAreaID) {
@@ -28,6 +29,7 @@ async function create(req, res) {
             recAreaDescription,
             user: userID,
             activities,
+            notes,
             date, 
             leaveDate,
         });

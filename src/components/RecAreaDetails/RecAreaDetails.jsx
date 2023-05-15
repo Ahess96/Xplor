@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify';
 export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
 
     const [activities, setActivities] = useState([])
-    // const [plans, setPlans] = useState(null)
+    const [notes, setNotes] = useState("Let's Xplor")
     const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
     const [leaveDate, setLeaveDate] = useState(new Date().toISOString().slice(0, 10))
 
@@ -25,10 +25,10 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
     }, [activeRecArea.Keywords, recAreaName]);
 
 
-  async function handleAddRecArea(evt, activeRecArea, activities, date, leaveDate) {
+  async function handleAddRecArea(evt, activeRecArea, activities, notes, date, leaveDate) {
     evt.preventDefault();
     // setDate(evt.target.value);
-    await recreationAPI.sendRecArea(activeRecArea.RecAreaDescription, activities, date, leaveDate, activeRecArea.RecAreaID, activeRecArea.RecAreaName, activeRecArea.RecAreaDirections);
+    await recreationAPI.sendRecArea(activeRecArea.RecAreaDescription, activities, notes, date, leaveDate, activeRecArea.RecAreaID, activeRecArea.RecAreaName, activeRecArea.RecAreaDirections);
     selectActiveRecArea([]);
     navigate('/user');
   }
@@ -44,6 +44,10 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
     evt.preventDefault();
     const updatedActivities = activities.filter(act => act !== keyword)
     setActivities(updatedActivities)
+  }
+
+  function handleChangeNotes(evt) {
+    setNotes(evt.target.value)
   }
 
   function handleChangeDate(evt) {
@@ -94,8 +98,14 @@ export default function RecAreaDetails({activeRecArea, selectActiveRecArea}) {
       <div className=''>No Activities provided by Recreation.gov</div>}
       </div>
 
+      <h3 className='font-bold font-quicksand text-xl m-4'>Notes</h3>
+      <form>
+        <input onChange={handleChangeNotes} type="text" name="notes" value={notes} />
+      </form>
+
+
       <div className='m-8'>
-        <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, date, leaveDate)} className='flex flex-col gap-2' >
+        <form onSubmit={(evt) => handleAddRecArea(evt, activeRecArea, activities, notes, date, leaveDate)} className='flex flex-col gap-2' >
           <label htmlFor='date'>Arrival:</label>
           <input 
           className='transform hover:scale-110 transition duration-200 hover:bg-amber-100 hover:rounded-md'

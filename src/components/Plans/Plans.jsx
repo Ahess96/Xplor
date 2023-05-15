@@ -32,6 +32,9 @@ export default function Plans({recArea, setUpdateRecAreas}) {
               <PlanList isOpen= {isOpen} recArea={recArea} setUpdateRecAreas={setUpdateRecAreas} />
                 
             </div>
+            <div>
+              <p>{recArea.notes}</p>
+            </div>
             <form onSubmit={(evt) => handleDelete(evt)}>
                 <input type="hidden" name='_id' value={recArea._id} />
                 <button className='hover:text-orange-700' type='submit'>Delete</button>
